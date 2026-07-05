@@ -31,7 +31,7 @@ export function HomePage() {
     async function fetchData() {
       try {
         const [categoriesRes, featuredRes, newRes, bestsellerRes] = await Promise.all([
-          supabase.from('categories').select('*').eq('is_active', true).is('parent_id', null).order('sort_order').limit(4),
+          supabase.from('categories').select('*').eq('is_active', true).is('parent_id', null).order('sort_order').limit(10),
           supabase.from('products').select('*, categories(*)').eq('is_active', true).eq('is_featured', true).order('created_at', { ascending: false }).limit(8),
           supabase.from('products').select('*, categories(*)').eq('is_active', true).eq('is_new', true).order('created_at', { ascending: false }).limit(8),
           supabase.from('products').select('*, categories(*)').eq('is_active', true).eq('is_bestseller', true).order('created_at', { ascending: false }).limit(8),
