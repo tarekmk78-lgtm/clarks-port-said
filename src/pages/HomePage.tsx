@@ -38,7 +38,7 @@ export function HomePage() {
             .eq('is_active', true)
             .is('parent_id', null)
             .order('sort_order')
-            .limit(4),
+            .limit(8),
           supabase
             .from('products')
             .select('*, categories(*)')
