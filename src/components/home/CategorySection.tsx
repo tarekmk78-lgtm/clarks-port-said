@@ -53,7 +53,7 @@ export function CategorySection({ categories }: CategorySectionProps) {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+          className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
         >
           {categories.map((category) => (
             <motion.div key={category.id} variants={itemVariants}>
