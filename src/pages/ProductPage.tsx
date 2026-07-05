@@ -76,6 +76,10 @@ export function ProductPage() {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
+  useEffect(() => {
     async function fetchProduct() {
       if (!slug) return;
       setLoading(true);
