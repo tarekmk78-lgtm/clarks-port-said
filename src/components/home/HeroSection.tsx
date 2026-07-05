@@ -13,68 +13,38 @@ export function HeroSection() {
   const Arrow = isRTL ? ArrowLeft : ArrowRight;
 
   const heroImage = settings?.hero_image_url || FALLBACK_IMAGE;
-  const heroTitle = language === 'ar'
-    ? (settings?.hero_title_ar || 'مجموعة صيف ٢٠٢٦')
-    : (settings?.hero_title || 'The Summer Collection');
-  const heroSubtitle = language === 'ar'
-    ? (settings?.hero_subtitle_ar || t('hero.heroSubtitle'))
-    : (settings?.hero_subtitle || t('hero.heroSubtitle'));
+  const heroTitle = language === 'ar' ? (settings?.hero_title_ar || 'مجموعة صيف ٢٠٢٦') : (settings?.hero_title || 'The Summer Collection');
+  const heroSubtitle = language === 'ar' ? (settings?.hero_subtitle_ar || t('hero.heroSubtitle')) : (settings?.hero_subtitle || t('hero.heroSubtitle'));
 
   return (
     <section className="relative bg-ink overflow-hidden">
       <div className="grid lg:grid-cols-2 min-h-[88vh] lg:min-h-screen">
-        {/* Text column */}
         <div className="relative z-10 flex items-center px-6 md:px-12 lg:px-16 py-28 lg:py-0">
           <div className="max-w-lg">
-            <motion.span
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="eyebrow text-[#D9BB96]"
-            >
+            <motion.span initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="eyebrow text-[#D9BB96]">
               {language === 'ar' ? 'بورسعيد · صُنعت لتدوم' : 'Port Said · Crafted to last'}
             </motion.span>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.08] text-white mt-6 mb-6"
-            >
+            <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }} className="font-display text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.08] text-white mt-6 mb-6">
               {heroTitle}
             </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-              className="text-base md:text-lg text-white/65 leading-relaxed mb-10"
-            >
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.16, ease: [0.22, 1, 0.36, 1] }} className="text-base md:text-lg text-white/65 leading-relaxed mb-10">
               {heroSubtitle}
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-wrap items-center gap-5"
-            >
-              <Link
-                to="/shop"
-                className="group inline-flex items-center gap-2.5 px-7 py-4 bg-[#B8956E] text-ink font-semibold rounded-sm hover:bg-[#D9BB96] transition-colors"
-              >
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }} className="flex flex-wrap items-center gap-5">
+              <Link to="/shop" className="group inline-flex items-center gap-2.5 px-7 py-4 text-ink font-semibold rounded-sm transition-colors" style={{ backgroundColor: 'var(--color-primary)' }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}>
                 {t('hero.shopNow')}
                 <Arrow className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
               </Link>
-              <Link
-                to="/shop?filter=new"
-                className="inline-flex items-center gap-2 text-white font-medium border-b border-white/30 pb-1 hover:border-white transition-colors"
-              >
+              <Link to="/shop?filter=new" className="inline-flex items-center gap-2 text-white font-medium border-b border-white/30 pb-1 hover:border-white transition-colors">
                 {t('hero.viewCollection')}
               </Link>
             </motion.div>
 
-            {/* Stitch divider under the CTAs */}
             <div className="stitch-divider--dark mt-12 max-w-xs" />
             <p className="mt-4 text-xs uppercase tracking-widest2 text-white/40">
               {language === 'ar' ? 'خياطة يدوية · جلد طبيعي' : 'Hand-stitched · Genuine leather'}
@@ -82,24 +52,10 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Image column */}
         <div className="relative min-h-[40vh] lg:min-h-screen">
-          <img
-            loading="eager"
-            decoding="async"
-            src={heroImage}
-            alt={language === 'ar' ? 'مجموعة كلاركس بورسعيد' : 'Clarks Port Said collection'}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+          <img loading="eager" decoding="async" src={heroImage} alt={language === 'ar' ? 'مجموعة كلاركس بورسعيد' : 'Clarks Port Said collection'} className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/10 to-transparent lg:bg-gradient-to-r lg:from-ink lg:via-transparent lg:to-transparent" />
-
-          {/* Heritage tag badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="absolute bottom-8 right-8 tag-badge"
-          >
+          <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.5 }} className="absolute bottom-8 right-8 tag-badge">
             {language === 'ar' ? 'تأسست في بورسعيد' : 'Est. in Port Said'}
           </motion.div>
         </div>
