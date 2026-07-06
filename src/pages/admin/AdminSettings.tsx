@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useI18n } from '../../lib/i18n';
+import { useSettings } from '../../lib/settings-context';
 import { supabase } from '../../lib/supabase';
 import { SiteSettings } from '../../types';
 import { Button } from '../../components/ui/Button';
@@ -138,6 +139,7 @@ const HERO_LAYOUTS = [
 
 export function AdminSettings() {
   const { language } = useI18n();
+  const { refresh } = useSettings();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [active, setActive] = useState<Section>('store');
@@ -191,6 +193,7 @@ export function AdminSettings() {
     try {
       const { error } = await supabase.from('settings').update(form).eq('id', 'default');
       if (error) throw error;
+      await refresh();
       toast.success(language === 'ar' ? 'تم حفظ الإعدادات' : 'Settings saved');
     } catch (error: any) {
       toast.error(error.message || (language === 'ar' ? 'فشل الحفظ' : 'Save failed'));
